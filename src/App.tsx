@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import Square from "./Square";
 
 const InitialGame = ["", "", "", "", "", "", "", "", ""];
@@ -22,18 +22,14 @@ function App() {
     checkForWinner();
   }, [gameState]);
 
-  const resetBoard = () => setGameState(InitialGame)
+  const resetBoard = () => setGameState(InitialGame);
 
   const handleWin = () => {
     window.alert(`Congrats player ${currentPlayer}! You are the winner!`);
-
-    resetBoard();
   };
 
   const handleDraw = () => {
     window.alert("The game ended in a draw");
-
-    resetBoard();
   };
 
   const changePlayer = () => {
@@ -67,7 +63,6 @@ function App() {
 
     if (!gameState.includes("")) {
       setTimeout(() => handleDraw(), 500);
-
       return;
     }
 
@@ -99,10 +94,14 @@ function App() {
               <Square
                 key={index}
                 onClick={handleCellClick}
-                {...{ index, player }}
+                index={index}
+                player={player}
               />
             ))}
           </div>
+          <button onClick={resetBoard} className="mt-4 p-2 bg-gray-800 text-white rounded-md">
+            Reset Game
+          </button>
         </div>
       </div>
     </>
